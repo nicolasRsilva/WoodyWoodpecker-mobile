@@ -4,86 +4,61 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
-import br.com.senaijandira.woodywoodpacker_mobile.fragment.Fragment1;
-import br.com.senaijandira.woodywoodpacker_mobile.fragment.Fragment2;
-import br.com.senaijandira.woodywoodpacker_mobile.fragment.Fragment3;
+import java.util.List;
 
-public class InicioActivity extends AppCompatActivity {
+import br.com.senaijandira.woodywoodpacker_mobile.Adapter.Adapter;
+import br.com.senaijandira.woodywoodpacker_mobile.model.Autores;
+import br.com.senaijandira.woodywoodpacker_mobile.presenter.AutoresPresent;
+import br.com.senaijandira.woodywoodpacker_mobile.service.ServiceFactory;
+import br.com.senaijandira.woodywoodpacker_mobile.view.MainView;
+
+public class InicioActivity extends AppCompatActivity implements MainView, AdapterView.OnItemClickListener {
+
+    ListView listView;
+    Adapter adapter;
 
     FragmentManager fm;
     TabLayout tab_menu;
+
+    AutoresPresent presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-        //instanciando o frag,ent manager
-        fm = getSupportFragmentManager();
+        listView = findViewById(R.id.listViewAutores);
+        adapter = new Adapter(this);
 
-        tab_menu = findViewById(R.id.tab_menu);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
 
-        //ação apos selecao da fragment
-        tab_menu.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                if(tab.getPosition() == 0){
-                    openFragment1(null);
-                }
-                if(tab.getPosition() == 1){
-                    openFragment2(null);
-                }
-                if(tab.getPosition() == 2){
-                    openFragment3(null);
-                }
-            }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+        presenter = new AutoresPresent(this, ServiceFactory.create());
+    }
 
-            }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.carregarAutores();
+    }
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+    public void preencherLista (List<Autores>lstAutores){
 
-            }
-        });
-
+        adapter.clear();
+        adapter.addAll(lstAutores);
 
     }
 
-    public void openFragment1(View view){
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Autores autorSelecionado = adapter.getItem(position);
 
-        FragmentTransaction ft = fm.beginTransaction();
-
-        ft.replace(R.id.frame_layout, new Fragment1());
-
-        ft.commit();
 
     }
-
-    public void openFragment2(View view){
-
-        FragmentTransaction ft = fm.beginTransaction();
-
-        ft.replace(R.id.frame_layout, new Fragment2());
-
-        ft.commit();
-
-    }
-
-    public void openFragment3(View view){
-
-        FragmentTransaction ft = fm.beginTransaction();
-
-        ft.replace(R.id.frame_layout, new Fragment3());
-
-        ft.commit();
-
-    }
-
 }

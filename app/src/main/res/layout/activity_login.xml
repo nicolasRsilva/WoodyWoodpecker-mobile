@@ -25,15 +25,12 @@
                     />
 
             <EditText
-                android:id="@+id/txtEmail"
+                android:id="@+id/txtUsuario"
                 android:layout_width="200dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/borda_login"
-                android:hint="Usuário"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:hint="Usuário" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -50,11 +47,7 @@
                     android:layout_width="200dp"
                     android:layout_height="30dp"
                     android:hint="Senha"
-                    android:imeActionId="6"
-                    android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:singleLine="true"
                     android:background="@drawable/borda_login"
                     android:layout_marginBottom="40dp"/>
 

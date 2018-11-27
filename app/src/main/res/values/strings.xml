@@ -13,4 +13,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="IMAGEM_URL">http://10.0.2.2/inf3m20182/nicolas/livraria/cms/</string>
 </resources>
