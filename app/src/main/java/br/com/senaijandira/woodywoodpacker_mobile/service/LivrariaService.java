@@ -17,4 +17,7 @@ public interface LivrariaService {
     @GET("/autores")
     Call<List<Autores>> obterAutores();
 
+    @GET("/autores/delete/{id}")
+    Call<String> deletarAutores(@Path("id") int id);
+
 }

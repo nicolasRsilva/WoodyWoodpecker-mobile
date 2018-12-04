@@ -25,12 +25,13 @@
                     />
 
             <EditText
-                android:id="@+id/txtUsuario"
                 android:layout_width="200dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/borda_login"
-                android:hint="Usuário" />
+                android:hint="Usuário"
+                android:id="@+id/txtUsuario"
+                />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -43,18 +44,18 @@
                     />
 
                 <EditText
-                    android:id="@+id/txtSenha"
                     android:layout_width="200dp"
                     android:layout_height="30dp"
                     android:hint="Senha"
                     android:inputType="textPassword"
                     android:background="@drawable/borda_login"
-                    android:layout_marginBottom="40dp"/>
+                    android:layout_marginBottom="40dp"
+                    android:id="@+id/txtSenha"
+                    />
 
 
 
             <Button
-                android:id="@+id/btnEntrar"
                 android:layout_width="200dp"
                 android:layout_height="37dp"
                 android:layout_marginTop="16dp"
@@ -64,7 +65,7 @@
                 android:textColor="@color/preto"
                 android:textStyle="bold"
                 android:background="@color/amarelo"
-                android:onClick="logar"
+                android:onClick="autenticar"
                 />
 
 

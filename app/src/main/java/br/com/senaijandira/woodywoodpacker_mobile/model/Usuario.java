@@ -2,7 +2,10 @@ package br.com.senaijandira.woodywoodpacker_mobile.model;
 
 public class Usuario {
 
+
     private String usuario;
+
+    private String senha;
 
 
     public String getUsuario() {
@@ -11,5 +14,13 @@ public class Usuario {
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

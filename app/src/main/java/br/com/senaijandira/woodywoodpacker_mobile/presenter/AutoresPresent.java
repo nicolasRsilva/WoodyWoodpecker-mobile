@@ -17,9 +17,6 @@ public class AutoresPresent {
     Autores autores;
     LivrariaService service;
 
-
-
-
     public AutoresPresent (MainView mainView, LivrariaService service){
         this.mainView = mainView;
         this.service = service;
@@ -48,5 +45,19 @@ public class AutoresPresent {
         });
     }
 
+    public void deletarAutores(int id){
+        service.deletarAutores(id).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                mainView.deletar(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+    }
 
 }

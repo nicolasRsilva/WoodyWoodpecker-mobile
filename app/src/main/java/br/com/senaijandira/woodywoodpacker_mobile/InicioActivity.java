@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -54,6 +55,15 @@ public class InicioActivity extends AppCompatActivity implements MainView, Adapt
         adapter.addAll(lstAutores);
 
     }
+
+    public void deletar(String a){
+        Toast.makeText(this, a,Toast.LENGTH_LONG).show();
+    }
+
+    public void excluir(int id){
+        presenter.deletarAutores(id);
+    }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

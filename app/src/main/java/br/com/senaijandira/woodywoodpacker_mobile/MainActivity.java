@@ -4,15 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import br.com.senaijandira.woodywoodpacker_mobile.model.Usuario;
 import br.com.senaijandira.woodywoodpacker_mobile.presenter.UsuarioPresenter;
+import br.com.senaijandira.woodywoodpacker_mobile.service.ServiceFactory;
+import br.com.senaijandira.woodywoodpacker_mobile.view.UsuarioView;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity  implements UsuarioView{
 
-
-
-    //EditText txtUsua;
-    //EditText txtSenha;
+    EditText txtUsuario;
+    EditText txtSenha;
+    String u;
+    String s;
+    String usu;
+    String senhaa;
 
     UsuarioPresenter presenter;
 
@@ -21,28 +28,36 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-       // txtUsua.findViewById(R.id.txtUsuario);
-        //txtSenha.findViewById(R.id.txtSenha);
+        txtUsuario = findViewById(R.id.txtUsuario);
+        txtSenha = findViewById(R.id.txtSenha);
 
-        //presenter = new UsuarioPresenter(this, ServiceFactory.create());
-        //presenter.confirmarUsuario("'nick'","123");
+
+        presenter = new UsuarioPresenter(this, ServiceFactory.create());
+
+
+    }
+    public void autenticar(View v){
+        u = txtUsuario.toString();
+        s = txtSenha.toString();
+        presenter.confirmarUsuario(u,s);
 
     }
 
+    public void Logar(Usuario usuario){
 
+        usu = usuario.getUsuario();
+        senhaa = usuario.getSenha();
 
-    public void logar(View view) {
-
-       // if(usuario.getUsuario().equals("usuario não existente")){
-
-
-        //}else{
+       if(usu != "nick"){
             startActivity(new Intent(this, InicioActivity.class));
-        //}
-
-
-
+        }else{
+            Toast.makeText(this, usu,Toast.LENGTH_LONG).show();
+        }
     }
+
+
+
+
 }
 
 

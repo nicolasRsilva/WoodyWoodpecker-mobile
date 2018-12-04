@@ -18,15 +18,16 @@ public class UsuarioPresenter {
     }
 
     public void confirmarUsuario(String usuario,String senha){
+
         service.loginAluno(usuario,senha).enqueue(new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                 view.logar(response.body());
+                view.Logar(response.body());
             }
 
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
     }

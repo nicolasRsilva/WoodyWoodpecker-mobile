@@ -8,6 +8,7 @@ public class Autores {
     private String titulo;
 
     private String descricao;
+    @SerializedName("idAutores")
     private int id;
     private boolean status;
 
