@@ -1,5 +1,6 @@
 package br.com.senaijandira.woodywoodpacker_mobile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -60,14 +61,22 @@ public class InicioActivity extends AppCompatActivity implements MainView, Adapt
         Toast.makeText(this, a,Toast.LENGTH_LONG).show();
     }
 
-    public void excluir(int id){
-        presenter.deletarAutores(id);
+    public void excluir(){
+        int id = getIntent().getIntExtra("idAutor",0);
+        Toast.makeText(this,id,Toast.LENGTH_LONG).show();
+
+        //presenter.deletarAutores(id);
     }
 
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Autores autorSelecionado = adapter.getItem(position);
+
+        Intent intent = new Intent(this, InicioActivity.class);
+        intent.putExtra("idAutor",autorSelecionado.getId());
+
+        startActivity(intent);
 
 
     }
